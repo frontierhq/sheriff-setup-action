@@ -28,14 +28,14 @@ async function run() {
     }
 
     let platform;
-    if (agentOSArchitecture === 'X64' || agentOSArchitecture === 'X86') {
+    if (agentOSArchitecture.toLocaleLowerCase() === 'x64' || agentOSArchitecture.toLocaleLowerCase() === 'x86') {
       platform = 'x86_64';
     } else {
       platform = agentOSArchitecture;
     }
 
     let fileExtension;
-    if (thisOs === 'Windows') {
+    if (thisOs.toLocaleLowerCase() === 'windows') {
       fileExtension = 'zip';
     } else {
       fileExtension = 'tar.gz';
