@@ -82,9 +82,9 @@ async function run() {
     await exec.exec(path.join(toolDirPath, 'sheriff'), ['version']);
   } catch (err) {
     if (err instanceof Error) {
-      core.setFailed(tl.TaskResult.Failed, err.message);
+      core.setFailed(err.message);
     } else {
-      core.setFailed(tl.TaskResult.Failed, 'Unknown error');
+      core.setFailed('Unknown error');
     }
   }
 }
