@@ -75,7 +75,7 @@ async function run() {
       return finished(writer);
     });
 
-    // tl.mkdirP(toolDirPath);
+    fs.mkdirSync(toolDirPath, { 'recursive': true });
     await exec.exec('tar', ['-xf', downloadPath, '-C', toolDirPath]);
 
 
