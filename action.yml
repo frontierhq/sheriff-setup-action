@@ -17,4 +17,4 @@ branding:
   color: "green"
 runs:
   using: "node20"
-  main: "lib/main.js"
+  main: "index.js"
