@@ -5,7 +5,7 @@ inputs:
   version:
     description: "version to install"
     default: latest
-    required: true
+    required: false
   os:
     description: "OS Platform to match in release package. Specify this parameter if the repository releases do not follow a normal convention otherwise it will be auto-detected."
     required: false
