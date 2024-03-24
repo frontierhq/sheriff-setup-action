@@ -4,6 +4,7 @@
   "description": "Install Sheriff in a Github action",
   "main": "index.js",
   "scripts": {
+    "build": "rm -rf dist && ncc build src/index.js -o dist",
     "test": "run-p test:*",
     "test:js": "eslint .",
     "test:unit": "mocha test/unit --recursive --reporter mocha-multi --reporter-options spec=-,mocha-junit-reporter=-"
@@ -25,6 +26,7 @@
     "azure-pipelines-task-lib": "^4.4.0"
   },
   "devDependencies": {
+    "@vercel/ncc": "^0.38.1",
     "eslint": "^8.44.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5",
