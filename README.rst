@@ -3,9 +3,9 @@
   :alt: Sheriff logo
   :align: center
 
-===================
+====================
 Sheriff Setup Action
-===================
+====================
 
 -----
 About
@@ -20,16 +20,13 @@ Privileged Identity Management (Microsoft Entra PIM) using desired state configu
 Usage
 -----
 
-~~~~~~~~~~~~~~~~~~~~~~
-Sheriff Setup action
-~~~~~~~~~~~~~~~~~~~~~~
-
 This task fetches and unpacks the Sheriff CLI tool.
 
 .. code:: yaml
 
-  - name: Install Sheriff
-    uses: gofrontier-com/sheriff-setup-action@main
+  steps:
+    - name: Setup Sheriff
+      uses: gofrontier-com/sheriff-setup-action@main
 
 ------------
 Contributing
