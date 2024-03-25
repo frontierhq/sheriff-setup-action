@@ -1,0 +1,20 @@
+name: "Install Sheriff GitHub releases"
+description: "Install Sheriff from GitHub releases"
+author: "Craig Anderson"
+inputs:
+  version:
+    description: "version to install"
+    default: latest
+    required: false
+  os:
+    description: "OS Platform to match in release package. Specify this parameter if the repository releases do not follow a normal convention otherwise it will be auto-detected."
+    required: false
+  arch:
+    description: "OS Architecture to match in release package. Specify this parameter if the repository releases do not follow a normal convention otherwise it will be auto-detected."
+    required: false
+branding:
+  icon: "archive"
+  color: "green"
+runs:
+  using: "node20"
+  main: "dist/index.js"
