@@ -20,10 +20,6 @@ Privileged Identity Management (Microsoft Entra PIM) using desired state configu
 Usage
 -----
 
-~~~~~~~~~~~~~~~~~~~~~~
-Sheriff Setup action
-~~~~~~~~~~~~~~~~~~~~~~
-
 This task fetches and unpacks the Sheriff CLI tool.
 
 .. code:: yaml
