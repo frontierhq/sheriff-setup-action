@@ -26,7 +26,7 @@ This task fetches and unpacks the Sheriff CLI tool.
 
   steps:
     - name: Setup Sheriff
-      uses: gofrontier-com/sheriff-setup-action@main
+      uses: gofrontier-com/sheriff-setup-action@v1
 
 ------------
 Contributing
