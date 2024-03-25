@@ -28,8 +28,9 @@ This task fetches and unpacks the Sheriff CLI tool.
 
 .. code:: yaml
 
-  - name: Install Sheriff
-    uses: gofrontier-com/sheriff-setup-action@main
+  steps:
+    - name: Setup Sheriff
+      uses: gofrontier-com/sheriff-setup-action@main
 
 ------------
 Contributing
