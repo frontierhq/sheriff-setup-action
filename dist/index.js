@@ -35772,24 +35772,18 @@ async function run() {
     core.info(`Tool directory path: ${toolDirPath}`);
 
     const writer = fs.createWriteStream(downloadPath);
-
-    const client = axios.create();
-    client.interceptors.request.use((request) => {
-      core.info(`Axios request: ${request.method} ${request.url} `);
-      return request;
-    });
-    client.interceptors.response.use((response) => {
-      core.info(`Axios response: ${response.status} ${response.statusText}`);
-      return response;
-    });
-
-    await client({
-      url: downloadUrl,
-      method: 'get',
-      responseType: 'stream',
-    }).then((response) => {
-      response.data.pipe(writer);
-      return finished(writer);
+    const https = __nccwpck_require__(5687); 
+    await new Promise((resolve, reject) => {
+      const request = https.get(downloadUrl, (response) => {
+        if (response.statusCode !== 200) {
+          reject(new Error(`Failed to get '${downloadUrl}' (${response.statusCode})`));
+          return;
+        }
+        response.pipe(writer);
+        writer.on('finish', resolve);
+        writer.on('error', reject);
+      });
+      request.on('error', reject);
     });
 
     fs.mkdirSync(toolDirPath, { 'recursive': true });
