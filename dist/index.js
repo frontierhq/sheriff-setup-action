@@ -35760,9 +35760,9 @@ async function run() {
 
     let downloadUrl;
     if (version === 'latest') {
-      downloadUrl = `https://github.com/gofrontier-com/sheriff/releases/latest/download/sheriff_${thisOs}_${platform}.${fileExtension}`;
+      downloadUrl = `https://github.com/frontierhq/sheriff/releases/latest/download/sheriff_${thisOs}_${platform}.${fileExtension}`;
     } else {
-      downloadUrl = `https://github.com/gofrontier-com/sheriff/releases/download/${version}/sheriff_${thisOs}_${platform}.${fileExtension}`;
+      downloadUrl = `https://github.com/frontierhq/sheriff/releases/download/${version}/sheriff_${thisOs}_${platform}.${fileExtension}`;
     }
     const downloadPath = path.join(agentTempDirectory, `sheriff_${thisOs}_${platform}.${fileExtension}`);
     const toolDirPath = `${agentToolsDirectory}/sheriff/${version}/${platform}`;
