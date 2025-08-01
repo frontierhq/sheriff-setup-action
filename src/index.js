@@ -43,7 +43,7 @@ async function run() {
 
     let downloadUrl;
     if (version === 'latest') {
-      downloadUrl = `https://github.com/frontierhq/sheriff/releases/latest/download/sheriff_${thisOs}_${platform}.${fileExtension}`;
+      downloadUrl = `https://github.com/frontierhq/sheriff/releases/latest/download/sheriff_Linux_x86_64.tar.gz`;
     } else {
       downloadUrl = `https://github.com/frontierhq/sheriff/releases/download/${version}/sheriff_${thisOs}_${platform}.${fileExtension}`;
     }
@@ -59,7 +59,7 @@ async function run() {
     await new Promise((resolve, reject) => {
       const request = https.get(downloadUrl, (response) => {
         if (response.statusCode !== 200) {
-          reject(new Error(`Failed to get '${downloadUrl}' (${response.statusCode})`));
+          reject(new Error(`Failed too get '${downloadUrl}' (${response.statusCode})`));
           return;
         }
         response.pipe(writer);
