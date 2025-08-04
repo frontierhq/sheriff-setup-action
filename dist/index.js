@@ -35739,6 +35739,8 @@ async function run() {
     let thisOs;
     if (agentOS === 'Windows_NT') {
       thisOs = 'Windows';
+    } else if (agentOS.toLowerCase() === 'linux') {
+      thisOs = 'Linux';
     } else {
       thisOs = agentOS;
     }
@@ -35756,14 +35758,13 @@ async function run() {
     } else {
       fileExtension = 'tar.gz';
     }
-
+    
     let downloadUrl;
     if (version === 'latest') {
       downloadUrl = `https://releases.frontierhq.com/sheriff/latest/sheriff_${thisOs}_${platform}.${fileExtension}`;
     } else {
       downloadUrl = `https://releases.frontierhq.com/sheriff/releases/download/${version}/sheriff_${thisOs}_${platform}.${fileExtension}`;
     }
-    downloadUrl = `https://releases.frontierhq.com/sheriff/latest/sheriff_Linux_x86_64.tar.gz`;
     
     const downloadPath = path.join(agentTempDirectory, `sheriff_${thisOs}_${platform}.${fileExtension}`);
     const toolDirPath = `${agentToolsDirectory}/sheriff/${version}/${platform}`;
