@@ -35731,7 +35731,7 @@ const finished = promisify(stream.finished);
 async function run() {
   try {
     const version = core.getInput('version', true);
-
+    core.info(`version is : ${version}`);
     const agentOS = core.getInput('os') || os.platform();
     const agentOSArchitecture = core.getInput('arch') || os.arch();
     const agentTempDirectory = "/tmp" //core.getInput('Agent.TempDirectory');
@@ -35764,6 +35764,7 @@ async function run() {
     } else {
       downloadUrl = `https://github.com/gofrontier-com/sheriff/releases/download/${version}/sheriff_${thisOs}_${platform}.${fileExtension}`;
     }
+    downloadUrl = 'https://github.com/frontierhq/sheriff/releases/download/v0.3.3/sheriff_Linux_x86_64.tar.gz'
     const downloadPath = path.join(agentTempDirectory, `sheriff_${thisOs}_${platform}.${fileExtension}`);
     const toolDirPath = `${agentToolsDirectory}/sheriff/${version}/${platform}`;
 
