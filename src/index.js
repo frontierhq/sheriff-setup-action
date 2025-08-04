@@ -40,11 +40,15 @@ async function run() {
       fileExtension = 'tar.gz';
     }
 
+    core.info(`Os URL: ${thisOs}`);
+    core.info(`Platform URL: ${platform}`);
+    core.info(`fileExtension URL: ${fileExtension}`);
+
     let downloadUrl;
     if (version === 'latest') {
       downloadUrl = `https://releases.frontierhq.com/sheriff/latest/sheriff_${thisOs}_${platform}.${fileExtension}`;
     } else {
-      downloadUrl = `https://releases.frontierhq.com/sheriff/${version}/sheriff_${thisOs}_${platform}.${fileExtension}`;
+      downloadUrl = `https://releases.frontierhq.com/sheriff/releases/download/${version}/sheriff_${thisOs}_${platform}.${fileExtension}`;
     }
     const downloadPath = path.join(agentTempDirectory, `sheriff_${thisOs}_${platform}.${fileExtension}`);
     const toolDirPath = `${agentToolsDirectory}/sheriff/${version}/${platform}`;
