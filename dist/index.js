@@ -35760,9 +35760,9 @@ async function run() {
 
     let downloadUrl;
     if (version === 'latest') {
-      downloadUrl = `https://github.com/frontierhq/sheriff/releases/latest/download/sheriff_Linux_x86_64.tar.gz`;
+      downloadUrl = `https://github.com/gofrontier-com/sheriff/releases/latest/download/sheriff_${thisOs}_${platform}.${fileExtension}`;
     } else {
-      downloadUrl = `https://github.com/frontierhq/sheriff/releases/download/${version}/sheriff_${thisOs}_${platform}.${fileExtension}`;
+      downloadUrl = `https://github.com/gofrontier-com/sheriff/releases/download/${version}/sheriff_${thisOs}_${platform}.${fileExtension}`;
     }
     const downloadPath = path.join(agentTempDirectory, `sheriff_${thisOs}_${platform}.${fileExtension}`);
     const toolDirPath = `${agentToolsDirectory}/sheriff/${version}/${platform}`;
@@ -35772,18 +35772,24 @@ async function run() {
     core.info(`Tool directory path: ${toolDirPath}`);
 
     const writer = fs.createWriteStream(downloadPath);
-    const https = __nccwpck_require__(5687); 
-    await new Promise((resolve, reject) => {
-      const request = https.get(downloadUrl, (response) => {
-        if (response.statusCode !== 200) {
-          reject(new Error(`Failed too get '${downloadUrl}' (${response.statusCode})`));
-          return;
-        }
-        response.pipe(writer);
-        writer.on('finish', resolve);
-        writer.on('error', reject);
-      });
-      request.on('error', reject);
+
+    const client = axios.create();
+    client.interceptors.request.use((request) => {
+      core.info(`Axios request: ${request.method} ${request.url} `);
+      return request;
+    });
+    client.interceptors.response.use((response) => {
+      core.info(`Axios response: ${response.status} ${response.statusText}`);
+      return response;
+    });
+
+    await client({
+      url: downloadUrl,
+      method: 'get',
+      responseType: 'stream',
+    }).then((response) => {
+      response.data.pipe(writer);
+      return finished(writer);
     });
 
     fs.mkdirSync(toolDirPath, { 'recursive': true });
