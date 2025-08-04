@@ -42,9 +42,9 @@ async function run() {
 
     let downloadUrl;
     if (version === 'latest') {
-      downloadUrl = `https://releases.frontierhq.com/sheriff/latest/sheriff_${os}_${platform}.${fileExtension}`;
+      downloadUrl = `https://releases.frontierhq.com/sheriff/latest/sheriff_${thisOs}_${platform}.${fileExtension}`;
     } else {
-      downloadUrl = `https://releases.frontierhq.com/sheriff/${version}/sheriff_${os}_${platform}.${fileExtension}`;
+      downloadUrl = `https://releases.frontierhq.com/sheriff/${version}/sheriff_${thisOs}_${platform}.${fileExtension}`;
     }
     const downloadPath = path.join(agentTempDirectory, `sheriff_${thisOs}_${platform}.${fileExtension}`);
     const toolDirPath = `${agentToolsDirectory}/sheriff/${version}/${platform}`;
