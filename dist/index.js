@@ -35763,7 +35763,6 @@ async function run() {
     } else {
       downloadUrl = `https://releases.frontierhq.com/sheriff/${version}/sheriff_${os}_${platform}.${fileExtension}`;
     }
-    downloadUrl = 'https://github.com/frontierhq/sheriff/releases/download/v0.3.3/sheriff_Linux_x86_64.tar.gz'
     const downloadPath = path.join(agentTempDirectory, `sheriff_${thisOs}_${platform}.${fileExtension}`);
     const toolDirPath = `${agentToolsDirectory}/sheriff/${version}/${platform}`;
 
