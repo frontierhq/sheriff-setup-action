@@ -2,7 +2,6 @@
 /* eslint-env mocha */
 
 const assert = require('assert');
-const path = require('path');
 
 describe('Sheriff Setup Action', () => {
   it('should construct correct download URL for latest version', () => {
