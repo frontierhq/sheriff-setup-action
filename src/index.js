@@ -14,15 +14,16 @@ const finished = promisify(stream.finished);
 async function run() {
   try {
     const version = core.getInput('version', true);
-
     const agentOS = core.getInput('os') || os.platform();
     const agentOSArchitecture = core.getInput('arch') || os.arch();
-    const agentTempDirectory = "/tmp" //core.getInput('Agent.TempDirectory');
-    const agentToolsDirectory = "/tmp" //core.getInput('Agent.ToolsDirectory');
+    const agentTempDirectory = '/tmp';
+    const agentToolsDirectory = '/tmp';
 
     let thisOs;
     if (agentOS === 'Windows_NT') {
       thisOs = 'Windows';
+    } else if (agentOS.toLowerCase() === 'linux') {
+      thisOs = 'Linux';
     } else {
       thisOs = agentOS;
     }
@@ -40,12 +41,11 @@ async function run() {
     } else {
       fileExtension = 'tar.gz';
     }
-
     let downloadUrl;
     if (version === 'latest') {
-      downloadUrl = `https://github.com/gofrontier-com/sheriff/releases/latest/download/sheriff_${thisOs}_${platform}.${fileExtension}`;
+      downloadUrl = `https://releases.frontierhq.com/sheriff/latest/sheriff_${thisOs}_${platform}.${fileExtension}`;
     } else {
-      downloadUrl = `https://github.com/gofrontier-com/sheriff/releases/download/${version}/sheriff_${thisOs}_${platform}.${fileExtension}`;
+      downloadUrl = `https://releases.frontierhq.com/sheriff/releases/download/${version}/sheriff_${thisOs}_${platform}.${fileExtension}`;
     }
     const downloadPath = path.join(agentTempDirectory, `sheriff_${thisOs}_${platform}.${fileExtension}`);
     const toolDirPath = `${agentToolsDirectory}/sheriff/${version}/${platform}`;
@@ -75,10 +75,8 @@ async function run() {
       return finished(writer);
     });
 
-    fs.mkdirSync(toolDirPath, { 'recursive': true });
+    fs.mkdirSync(toolDirPath, { recursive: true });
     await exec.exec('tar', ['-xf', downloadPath, '-C', toolDirPath]);
-
-
     await exec.exec(path.join(toolDirPath, 'sheriff'), ['version']);
   } catch (err) {
     if (err instanceof Error) {
